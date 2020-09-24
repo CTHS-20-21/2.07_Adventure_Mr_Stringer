@@ -8,6 +8,7 @@ debug = True
 floor1 = ['empty', 'sword', 'stairs up', 'monster', 'empty']
 floor2 = ['magic stones', 'monster','stairs down','empty','stairs up']
 floor3 = ['prize', 'boss monster','sword','sword','stairs down']
+inventory = [""]
 #3 floors and 5 rooms
 #Start the user at the beginning
 player_floor = 1
