@@ -11,6 +11,5 @@ player_position = 1
 #Start the turns
 
 while done == False:
-  print(yes)
+  print(player_floor,":",player_position)
   done = True
-      
