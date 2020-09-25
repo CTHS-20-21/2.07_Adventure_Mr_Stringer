@@ -4,7 +4,7 @@ print("Welcome to the dungeon! Available commands are left, right, up, down, gra
 
 #Variables
 done = False
-debug = True
+debug = False
 floormain = [['empty', 'sword', 'stairs up', 'monster', 'empty'],['magic stones', 'monster','stairs down','empty','stairs up'],['prize', 'boss monster','sword','sword','stairs down']]
 inventory = []
 danger = 0
