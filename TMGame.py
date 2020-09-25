@@ -49,7 +49,6 @@ while done == False:
     danger = 2
   else:
     print("You see the prize!")
-    done = True
   
   #get user choice
   action = input('Command? ')
@@ -94,7 +93,7 @@ while done == False:
   elif action == 'grab':
     if room != 'magic stones' and room != 'sword' and room != 'prize':
       print('There is nothing to grab in this room.')
-    if danger > 1:
+    elif danger > 1:
       print('The monster eats your arm and you die.')
       done = True
     # grab items
@@ -109,6 +108,7 @@ while done == False:
         Done = True
       else:
         # add to inventory
+        print("You add the", room, "to your inventory.")
         inventory.append(room)
         # and remove from room
         floormain[floorindex][roomindex]='empty'
@@ -137,16 +137,16 @@ while done == False:
         done = True
   elif action == 'exit':
     done = True
+  elif action == 'inventory':
+    print("You have the following items in your inventory:\n")
+    for i in inventory:
+      print(i)
   else:
     print('Command not recognized. Type "help" to see all commands')
   
-  #now let's check for
-
-
-
+#now let's check for winning (grabbing the prize)
 if gamestate == 'won':
   print('You won the game!')
-  done = True
 else:
   print('Sorry, you lost the game.  Better luck next time.')
 
