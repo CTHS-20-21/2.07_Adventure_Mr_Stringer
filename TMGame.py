@@ -5,10 +5,10 @@ print("Welcome to the dungeon! Available commands are left, right, up, down, gra
 #Variables
 done = False
 debug = False
-floormain = [['empty', 'sword', 'stairs up', 'monster', 'empty'],['magic stones', 'monster','stairs down','empty','stairs up'],['prize', 'boss monster','sword','sword','stairs down']]
 inventory = []
 danger = 0
 #3 floors and 5 rooms
+floormain = [['empty', 'sword', 'stairs up', 'monster', 'empty'],['magic stones', 'monster','stairs down','empty','stairs up'],['prize', 'boss monster','sword','sword','stairs down']]
 #Start the user at the beginning
 player_floor = 1
 player_position = 1
@@ -17,9 +17,11 @@ gamestate = 'lost'
 
 #Start the turns
 while done == False:
+  #quck debug note
   if debug:
     print(player_floor,":",player_position)
     print(done)
+  #setup our room tracking 
   floorindex = player_floor - 1
   floor = floormain[floorindex]
   roomindex = player_position - 1
@@ -29,7 +31,8 @@ while done == False:
     print(room)
     print(inventory)
     print(floor)
-  print()
+  #Start the turn processing
+  print('\n****** New Turn *******\n')
   #now print room and options
   if room == 'empty':
     print('You are in an empty room.')
@@ -46,14 +49,14 @@ while done == False:
     print('You see stairs leading down.')
   elif room == 'boss monster':
     print('You see a huge and vaporial monster in the room.  I hope you have more than a sword.')
-    danger = 2
+    danger = 1
   else:
     print("You see the prize!")
   
   #get user choice
   action = input('Command? ')
 
-  #Now execute the user's command and hide exit
+  #Now execute the user's command and hide exit and inventory
   if action == 'help':
     print("You can type 'help', 'left', 'right', 'up', 'down', 'grab', or 'fight'")
     
@@ -118,7 +121,7 @@ while done == False:
       print("You do not see a monster.  Are you fighting the air?")
     elif room == 'monster':
       if "sword" in inventory:
-      # fight the monster
+      # fight the monster, remove the monster, and remove the sword from inventory
         print('You defeated the monster! But your sword rusts in your hands.  You will need to find another!')
         floormain[floorindex][roomindex] = 'empty'
         inventory.remove('sword')
