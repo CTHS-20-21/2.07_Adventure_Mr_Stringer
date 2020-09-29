@@ -119,8 +119,9 @@ while done == False:
     elif room == 'monster':
       if "sword" in inventory:
       # fight the monster
-        print('You defeated the monster!')
+        print('You defeated the monster! But your sword rusts in your hands.  You will need to find another!')
         floormain[floorindex][roomindex] = 'empty'
+        inventory.remove('sword')
         danger = 0
       else:
         print('You swing your fist at the monster and it tears your arm off.')
@@ -131,6 +132,7 @@ while done == False:
         if "sword" in inventory:
           print("Holding the stones up, the monster solidifies and your sword kills it.")
           floormain[floorindex][roomindex] = 'empty'
+          inventory.remove('sword')
           danger = 0
       else:
         print("you swing at the boss monster and your sword pass through its body with no damage off.  It eats your head.")
