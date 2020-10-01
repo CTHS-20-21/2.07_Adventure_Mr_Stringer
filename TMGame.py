@@ -1,6 +1,6 @@
 #Make sure to use comments for documentation of execition flow
 #Greet the user
-print("Welcome to the dungeon! Available commands are left, right, up, down, grad and fight. ")
+print("Welcome to the dungeon! Available commands are left, right, up, down, grab and fight. ")
 
 #Variables
 #Done tracking
@@ -66,19 +66,40 @@ while done == False:
     pass
   elif action == 'left':
     # move left
-    pass
+    if player_position == 1:
+      print("You cannot move that way")
+    else:
+      player_position -= 1
   elif action == 'right':
     # move right
-    pass
+    if player_position == 5:
+      print("You cannot move that way.")
+    else
+      player_position += 1
   elif action == 'up':
     # move up
-    pass
+    if room != "stairs up":
+      print("You see no stairs - you cannot move that way")
+    else:
+      player_floor += 1
   elif action == 'down':
     # move down
-    pass
+    if room != "stairs down":
+      print("You see no stairs - do you need glasses?"
+    else:
+      player_floor -= 1
   elif action == 'grab':
     # grab items
-    pass
+    if room == "empty":
+      print("You see nothing in the room, and you cannot grab air.  Please do something else")
+    else
+      inventory.append(room)
+      if player_floor == 1:
+        floor1[player_position-1] = 'empty'
+      elif player_floor == 2:
+        floor2[player_position-1] = 'empty'
+      else:
+        floor3[player_position-1] = 'empty'
   elif action == 'fight':
     # fight the monster
     pass
