@@ -3,20 +3,28 @@
 print("Welcome to the dungeon! Available commands are left, right, up, down, grad and fight. ")
 
 #Variables
+#Done tracking
 done = False
+
+#set a debug system
 debug = True
-floor1 = ['empty', 'sword', 'stairs up', 'monster', 'empty']
+
+#3 floors and 5 rooms
+floor1 = ['empty', 'sword', 'stairs up', 'monster', 'sword']
 floor2 = ['magic stones', 'monster','stairs down','empty','stairs up']
 floor3 = ['prize', 'boss monster','sword','sword','stairs down']
-inventory = [""]
-#3 floors and 5 rooms
+
+#player inventory (don't start with a blank)
+inventory = []
+
 #Start the user at the beginning
 player_floor = 1
 player_position = 1
-#and set if the game of won
-gamestate = 'lost'
-#Start the turns
 
+#and set if the game to start
+gamestate = 'lost'
+
+#Start the turns
 while done == False:
   if debug:
     print(player_floor,":",player_position)
