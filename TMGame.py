@@ -102,7 +102,7 @@ while done == False:
   elif action == 'down':
     # move down
     if room != "stairs down":
-      print("You see no stairs - do you need glasses?"
+      print("You see no stairs - do you need glasses?")
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want to dance and eats you.   Find a better partner.")
       done = True
@@ -115,7 +115,7 @@ while done == False:
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want a hug and eats you.   Sorry.")
       done = True
-    else
+    else:
       inventory.append(room)
       if player_floor == 1:
         floor1[player_position-1] = 'empty'
@@ -136,7 +136,7 @@ while done == False:
           floor3[player_position-1] = 'empty'
         print('The monster has ruised your sword.  You will need to find another one.')
         inventory.remove('sword')
-    elif room == 'boss monster'"
+    elif room == 'boss monster':
       if 'sword' in inventory:
         if 'magic stones' in inventory:
           print("The big ugly monster runs at you and your sword grows because of the stones - you stab the monster and kill it.")
@@ -146,7 +146,7 @@ while done == False:
             floor2[player_position-1] = 'empty'
           else:
             floor3[player_position-1] = 'empty'
-          print('Your sword shrinks into nothing after the fight.... I hope there is not more big ones!")
+          print('Your sword shrinks into nothing after the fight.... I hope there is not more big ones!')
           inventory.remove('sword')
     else:
       print("You don't see a monster - do you need something for your anxiety?")
