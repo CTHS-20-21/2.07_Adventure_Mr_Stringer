@@ -26,6 +26,8 @@ gamestate = 'lost'
 
 #Start the turns
 while done == False:
+  
+  ### DEBUG CODE
   if debug:
     print(player_floor,":",player_position)
     print(done)
@@ -37,9 +39,13 @@ while done == False:
   else:
     floor = floor3
   room = floor[player_position - 1]
+
+  #### DEBUG CODE
   if debug:
     print(room)
+    print(inventory)
   print()
+
   #now print room and options
   if room == 'empty':
     print('You are in an empty room.')
@@ -53,6 +59,8 @@ while done == False:
     print('You see magic stones in the room.')
   elif room == 'stairs down':
     print('You see stairs leading down.')
+  elif room == 'boss monster':
+    print('You see a BIG ugly monster in the room.')
   else:
     print("You see the prize!")
     done = True
@@ -68,30 +76,45 @@ while done == False:
     # move left
     if player_position == 1:
       print("You cannot move that way")
+    elif room == 'monster' or room == 'boss monster':
+      print("The monster does not want to dance and eats you.   Find a better partner.")
+      done = True
     else:
       player_position -= 1
   elif action == 'right':
     # move right
     if player_position == 5:
       print("You cannot move that way.")
-    else
+    elif room == 'monster' or room == 'boss monster':
+      print("The monster does not want to dance and eats you.   Find a better partner.")
+      done = True
+    else:
       player_position += 1
   elif action == 'up':
     # move up
     if room != "stairs up":
       print("You see no stairs - you cannot move that way")
+    elif room == 'monster' or room == 'boss monster':
+      print("The monster does not want to dance and eats you.   Find a better partner.")
+      done = True
     else:
       player_floor += 1
   elif action == 'down':
     # move down
     if room != "stairs down":
       print("You see no stairs - do you need glasses?"
+    elif room == 'monster' or room == 'boss monster':
+      print("The monster does not want to dance and eats you.   Find a better partner.")
+      done = True
     else:
       player_floor -= 1
   elif action == 'grab':
     # grab items
     if room == "empty":
       print("You see nothing in the room, and you cannot grab air.  Please do something else")
+    elif room == 'monster' or room == 'boss monster':
+      print("The monster does not want a hug and eats you.   Sorry.")
+      done = True
     else
       inventory.append(room)
       if player_floor == 1:
@@ -102,7 +125,32 @@ while done == False:
         floor3[player_position-1] = 'empty'
   elif action == 'fight':
     # fight the monster
-    pass
+    if room == 'monster':
+      if 'sword' in inventory:
+        print('You slide the monster in half and it falls to the floor.')
+        if player_floor == 1:
+          floor1[player_position-1] = 'empty'
+        elif player_floor == 2:
+          floor2[player_position-1] = 'empty'
+        else:
+          floor3[player_position-1] = 'empty'
+        print('The monster has ruised your sword.  You will need to find another one.')
+        inventory.remove('sword')
+    elif room == 'boss monster'"
+      if 'sword' in inventory:
+        if 'magic stones' in inventory:
+          print("The big ugly monster runs at you and your sword grows because of the stones - you stab the monster and kill it.")
+          if player_floor == 1:
+            floor1[player_position-1] = 'empty'
+          elif player_floor == 2:
+            floor2[player_position-1] = 'empty'
+          else:
+            floor3[player_position-1] = 'empty'
+          print('Your sword shrinks into nothing after the fight.... I hope there is not more big ones!")
+          inventory.remove('sword')
+    else:
+      print("You don't see a monster - do you need something for your anxiety?")
+
   elif action == 'exit':
     done = True
   else:
