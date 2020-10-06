@@ -74,52 +74,60 @@ while done == False:
     print("You can type 'help', 'left', 'right', 'up', 'down', 'grab', or 'fight'")
     pass
   elif action == 'left':
-    # move left
+    # move left - check for position and warn if at the beginning (1) or end (5)
     if player_position == 1:
       print("You cannot move that way")
-    elif room == 'monster' or room == 'boss monster':
+    #does the room have a monster?
+    elif room == 'monster' or room == 'boss monster':  
       print("The monster does not want to dance and eats you.   Find a better partner.")
       done = True
     else:
       player_position -= 1
   elif action == 'right':
-    # move right
+    # move right - check positioon
     if player_position == 5:
       print("You cannot move that way.")
+    #check for monster
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want to dance and eats you.   Find a better partner.")
       done = True
     else:
       player_position += 1
   elif action == 'up':
-    # move up
+    # move up - if there's stairs leading up
     if room != "stairs up":
       print("You see no stairs - you cannot move that way")
+    #check for monster - man I wish I didn't have to keep repeating the same code...
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want to dance and eats you.   Find a better partner.")
       done = True
     else:
       player_floor += 1
   elif action == 'down':
-    # move down
+    # move down - check for stairs
     if room != "stairs down":
       print("You see no stairs - do you need glasses?")
+    #check for monster
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want to dance and eats you.   Find a better partner.")
       done = True
     else:
       player_floor -= 1
   elif action == 'grab':
-    # grab items
+    # grab items - is there someting to grab?
     if room == "empty":
       print("You see nothing in the room, and you cannot grab air.  Please do something else")
+    #can't grab a monster....
     elif room == 'monster' or room == 'boss monster':
       print("The monster does not want a hug and eats you.   Sorry.")
       done = True
+    # do they already have one?
     elif room in inventory:
       print("You already have one of those!")
     else:
+      #add to inventory
       inventory.append(room)
+      #now clear it from the room (floor#)
       if player_floor == 1:
         floor1[player_position-1] = 'empty'
       elif player_floor == 2:
@@ -129,26 +137,33 @@ while done == False:
   elif action == 'fight':
     # fight the monster
     if room == 'monster':
+      #need to have a sword
       if 'sword' in inventory:
         print('You slice the monster in half and it falls to the floor.')
+        # remove monster from the room
         if player_floor == 1:
           floor1[player_position-1] = 'empty'
         elif player_floor == 2:
           floor2[player_position-1] = 'empty'
         else:
           floor3[player_position-1] = 'empty'
+        #now destroy the sword
         print('The monster has ruined your sword.  You will need to find another one.')
         inventory.remove('sword')
     elif room == 'boss monster':
+      #need a sword
       if 'sword' in inventory:
+        #and magic stones
         if 'magic stones' in inventory:
           print("The big ugly monster runs at you and your sword grows because of the stones - you stab the monster and kill it.")
+          #clear the monster
           if player_floor == 1:
             floor1[player_position-1] = 'empty'
           elif player_floor == 2:
             floor2[player_position-1] = 'empty'
           else:
             floor3[player_position-1] = 'empty'
+          #kill the sword
           print('Your sword shrinks into nothing after the fight.... I hope there is not more big ones!')
           inventory.remove('sword')
     else:
