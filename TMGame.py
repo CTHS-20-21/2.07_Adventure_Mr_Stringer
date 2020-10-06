@@ -1,3 +1,4 @@
+#Dungeon - last update 10/6
 #Make sure to use comments for documentation of execition flow
 #Greet the user
 print("Welcome to the dungeon! Available commands are left, right, up, down, grab and fight. ")
